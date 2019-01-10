@@ -1,0 +1,3 @@
+[submodule "parameterized_algorithm_base"]
+	path = parameterized_algorithm_base
+	url = git@github.com:Asset34/parameterized_algorithm_base
