@@ -12,6 +12,7 @@ class ParameterListWidget : public QWidget
 public:
     explicit ParameterListWidget(QWidget *parent = nullptr);
 
+public slots:
     void updateParameters(const std::vector<Parameter*> &parameters);
     void updateParameters(Algorithm &algorithm);
 
