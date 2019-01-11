@@ -15,8 +15,8 @@ class GuiCreatingVisitor : public ParameterVisitor
 public:
     explicit GuiCreatingVisitor(QWidget *processedWidget);
 
-    void update(const std::vector<Parameter*> &parameters);
-    void update(Algorithm &algorithm);
+    void updateWith(const std::vector<Parameter*> &parameters);
+    void updateWith(Algorithm &algorithm);
 
     virtual void visit(IntParameter  &p) override;
     virtual void visit(RealParameter &p) override;

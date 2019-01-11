@@ -18,7 +18,7 @@ GuiCreatingVisitor::GuiCreatingVisitor(QWidget *processedWidget)
     m_processedWidget->setLayout(m_layout);
 }
 
-void GuiCreatingVisitor::update(const std::vector<Parameter*> &parameters)
+void GuiCreatingVisitor::updateWith(const std::vector<Parameter*> &parameters)
 {
     clear();
 
@@ -27,9 +27,9 @@ void GuiCreatingVisitor::update(const std::vector<Parameter*> &parameters)
     }
 }
 
-void GuiCreatingVisitor::update(Algorithm &algorithm)
+void GuiCreatingVisitor::updateWith(Algorithm &algorithm)
 {
-    update(algorithm.getParameters());
+     updateWith(algorithm.getParameters());
 }
 
 void GuiCreatingVisitor::visit(IntParameter &p)
