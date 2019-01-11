@@ -12,8 +12,8 @@ class ParameterListWidget : public QWidget
 public:
     explicit ParameterListWidget(QWidget *parent = nullptr);
 
-    void updateParameters(const std::vector<Parameter*> &parameters);
-    void updateParameters(Algorithm &algorithm);
+    void updateWith(const std::vector<Parameter*> &parameters);
+    void updateWith(Algorithm &algorithm);
 
 private:
     GuiCreatingVisitor m_visitor;

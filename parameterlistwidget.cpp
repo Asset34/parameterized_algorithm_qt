@@ -6,12 +6,12 @@ ParameterListWidget::ParameterListWidget(QWidget *parent)
 {
 }
 
-void ParameterListWidget::updateParameters(const std::vector<Parameter*> &parameters)
+void ParameterListWidget::updateWith(const std::vector<Parameter*> &parameters)
 {
-    m_visitor.update(parameters);
+    m_visitor.updateWith(parameters);
 }
 
-void ParameterListWidget::updateParameters(Algorithm &algorithm)
+void ParameterListWidget::updateWith(Algorithm &algorithm)
 {
-    m_visitor.update(algorithm);
+    m_visitor.updateWith(algorithm);
 }
