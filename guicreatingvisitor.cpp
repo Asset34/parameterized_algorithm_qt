@@ -60,6 +60,8 @@ void GuiCreatingVisitor::visit(RealParameter &p)
 
     // Create validator
     QDoubleValidator *validator = new QDoubleValidator(p.getMin(), p.getMax(), 100, box);
+    validator->setNotation(QDoubleValidator::ScientificNotation);
+    validator->setLocale(QLocale(QLocale::English));
     box->setValidator(validator);
 
     // Connect created box to parameter
