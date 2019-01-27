@@ -3,9 +3,8 @@
 
 #include <vector>
 
-#include "parameterized_algorithm_base/algorithm.hpp"
-#include "parameterized_algorithm_base/parametervisitor.hpp"
-#include "parameterized_algorithm_base/Parameters/parameter.hpp"
+#include "../core/algorithm.hpp"
+#include "../core/parametervisitor.hpp"
 
 class QWidget;
 class QFormLayout;
