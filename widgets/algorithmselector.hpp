@@ -20,7 +20,6 @@ public:
     Algorithm *getCurrentAlgorithm() const;
 
     void addAlgorithm(Algorithm &algorithm);
-    void removeAlgorithm(Algorithm &algorithm);
     void removeAlgorithm(int index);
 
 public slots:

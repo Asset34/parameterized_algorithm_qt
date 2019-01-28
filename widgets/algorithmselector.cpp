@@ -37,11 +37,6 @@ void AlgorithmSelector::addAlgorithm(Algorithm &algorithm)
     addItem(QString::fromStdString(algorithm.getName()));
 }
 
-void AlgorithmSelector::removeAlgorithm(Algorithm &algorithm)
-{
-    m_algorithms.removeOne(&algorithm);
-}
-
 void AlgorithmSelector::removeAlgorithm(int index)
 {
     if (checkIndex(index)) {

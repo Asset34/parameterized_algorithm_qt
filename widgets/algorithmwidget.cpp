@@ -46,11 +46,6 @@ void AlgorithmWidget::addAlgorithm(Algorithm &algorithm)
     m_algorithmSelector->addAlgorithm(algorithm);
 }
 
-void AlgorithmWidget::removeAlgorithm(Algorithm &algorithm)
-{
-    m_algorithmSelector->removeAlgorithm(algorithm);
-}
-
 void AlgorithmWidget::removeAlgorithm(int index)
 {
     m_algorithmSelector->removeAlgorithm(index);
