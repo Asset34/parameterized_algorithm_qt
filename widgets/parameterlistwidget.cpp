@@ -15,3 +15,8 @@ void ParameterListWidget::updateWith(Algorithm &algorithm)
 {
     m_visitor.updateWith(algorithm);
 }
+
+void ParameterListWidget::clear()
+{
+    m_visitor.clear();
+}

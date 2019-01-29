@@ -15,6 +15,9 @@ public:
     void updateWith(const std::vector<Parameter*> &parameters);
     void updateWith(Algorithm &algorithm);
 
+public slots:
+    void clear();
+
 private:
     GuiCreatingVisitor m_visitor;
 
