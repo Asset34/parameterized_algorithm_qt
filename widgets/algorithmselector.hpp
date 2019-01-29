@@ -23,12 +23,13 @@ public:
 
     void addAlgorithm(std::unique_ptr<Algorithm> algorithm);
     void removeAlgorithm(int index);
-    void clear();
 
 public slots:
     void selectFirstAlgorithm();
     void selectLastAlgorithm();
     void selectAlgorithm(int index);
+
+    void clear();
 
 private:
     bool checkIndex(int index) const;

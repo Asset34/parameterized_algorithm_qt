@@ -45,6 +45,9 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
     addItem(QString::fromStdString(algorithm.get()->getName()));
     m_algorithms.push_back(std::move(algorithm));
 
+    // Update selection
+    selectLastAlgorithm();
+
     emit algorithmAdded(m_algorithms.back().get());
 }
 
@@ -54,15 +57,14 @@ void AlgorithmSelector::removeAlgorithm(int index)
         removeItem(index);
         m_algorithms.erase(m_algorithms.begin() + index);
 
+        // Update selection
+        selectLastAlgorithm();
+
+        if (isEmpty()) {
+            emit cleared();
+        }
         emit algorithmRemoved();
     }
-}
-
-void AlgorithmSelector::clear()
-{
-    m_algorithms.clear();
-
-    emit cleared();
 }
 
 void AlgorithmSelector::selectFirstAlgorithm()
@@ -86,6 +88,13 @@ void AlgorithmSelector::selectAlgorithm(int index)
 
         emit algorithmSelected(m_algorithms[index].get());
     }
+}
+
+void AlgorithmSelector::clear()
+{
+    m_algorithms.clear();
+
+    emit cleared();
 }
 
 bool AlgorithmSelector::checkIndex(int index) const
