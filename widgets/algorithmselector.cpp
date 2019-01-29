@@ -2,8 +2,6 @@
 
 #include <utility>
 
-#include <QDebug>
-
 AlgorithmSelector::AlgorithmSelector(QWidget *parent)
     : QComboBox(parent)
 {
