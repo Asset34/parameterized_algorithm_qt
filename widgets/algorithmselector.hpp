@@ -3,7 +3,8 @@
 
 #include <QComboBox>
 
-#include <QList>
+#include <vector>
+#include <memory>
 
 #include "../core/algorithm.hpp"
 
@@ -19,7 +20,7 @@ public:
     Algorithm *getAlgorithm(int index) const;
     Algorithm *getCurrentAlgorithm() const;
 
-    void addAlgorithm(Algorithm &algorithm);
+    void addAlgorithm(std::unique_ptr<Algorithm> algorithm);
     void removeAlgorithm(int index);
 
 public slots:
@@ -28,7 +29,7 @@ public slots:
 private:
     bool checkIndex(int index) const;
 
-    QList<Algorithm*> m_algorithms;
+    std::vector< std::unique_ptr<Algorithm> > m_algorithms;
 
 signals:
     void algorithmSelected(Algorithm *Algorithm);

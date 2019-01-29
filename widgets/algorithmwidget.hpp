@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include <memory>
+
 #include "../core/algorithm.hpp"
 
 class QVBoxLayout;
@@ -21,7 +23,7 @@ public:
     Algorithm *getAlgorithm(int index) const;
     Algorithm *getCurrentAlgorithm() const;
 
-    void addAlgorithm(Algorithm &algorithm);
+    void addAlgorithm(std::unique_ptr<Algorithm> algorithm);
     void removeAlgorithm(int index);
 
 public slots:

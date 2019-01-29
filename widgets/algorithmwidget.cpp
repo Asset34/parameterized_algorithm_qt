@@ -41,9 +41,9 @@ Algorithm *AlgorithmWidget::getCurrentAlgorithm() const
     return m_algorithmSelector->getCurrentAlgorithm();
 }
 
-void AlgorithmWidget::addAlgorithm(Algorithm &algorithm)
+void AlgorithmWidget::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
 {
-    m_algorithmSelector->addAlgorithm(algorithm);
+    m_algorithmSelector->addAlgorithm(std::move(algorithm));
 }
 
 void AlgorithmWidget::removeAlgorithm(int index)
