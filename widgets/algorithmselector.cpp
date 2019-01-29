@@ -25,21 +25,45 @@ bool AlgorithmSelector::isEmpty() const
 
 Algorithm &AlgorithmSelector::getAlgorithm(int index) const
 {
+    Q_ASSERT_X(
+        index >= 0 && index < m_algorithms.size(),
+        "AlgorithmSelector::getAlgorithm",
+        "index out of range"
+        );
+
     return *m_algorithms[index].get();
 }
 
 Algorithm &AlgorithmSelector::getCurrentAlgorithm() const
 {
+    Q_ASSERT_X(
+        !m_algorithms.empty(),
+        "AlgorithmSelector::getCurrentAlgorithm",
+        "Empty"
+        );
+
     return getAlgorithm(currentIndex());
 }
 
 Algorithm &AlgorithmSelector::getFirstAlgorithm() const
 {
+    Q_ASSERT_X(
+        !m_algorithms.empty(),
+        "AlgorithmSelector::getFirstAlgorithm",
+        "Empty"
+        );
+
     return *m_algorithms.front().get();
 }
 
 Algorithm &AlgorithmSelector::getLastAlgorithm() const
 {
+    Q_ASSERT_X(
+        !m_algorithms.empty(),
+        "AlgorithmSelector::getLastAlgorithm",
+        "Empty"
+        );
+
     return *m_algorithms.back().get();
 }
 
@@ -56,6 +80,12 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
 
 void AlgorithmSelector::removeAlgorithm(int index)
 {
+    Q_ASSERT_X(
+        index >= 0 && index < m_algorithms.size(),
+        "AlgorithmSelector::removeAlgorithm",
+        "index out of range"
+        );
+
     removeItem(index);
     m_algorithms.erase(m_algorithms.begin() + index);
 
@@ -84,6 +114,12 @@ void AlgorithmSelector::selectLastAlgorithm()
 
 void AlgorithmSelector::selectAlgorithm(int index)
 {
+    Q_ASSERT_X(
+        index >= 0 && index < m_algorithms.size(),
+        "AlgorithmSelector::selectAlgorithm",
+        "index out of range"
+        );
+
     setCurrentIndex(index);
 
     emit algorithmSelected(getCurrentAlgorithm());
