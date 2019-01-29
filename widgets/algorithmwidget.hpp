@@ -19,6 +19,7 @@ public:
     explicit AlgorithmWidget(QWidget *parent = nullptr);
 
     int getCount() const;
+    bool isEmpty() const;
 
     Algorithm *getAlgorithm(int index) const;
     Algorithm *getCurrentAlgorithm() const;
@@ -27,7 +28,11 @@ public:
     void removeAlgorithm(int index);
 
 public slots:
+    void selectFirstAlgorithm();
+    void selectLastAlgorithm();
     void selectAlgorithm(int index);
+
+    void clear();
 
 private:
     QVBoxLayout *m_layout;
@@ -39,7 +44,11 @@ private slots:
     void updateParameters(Algorithm *algorithm);
 
 signals:
+    void algorithmAdded(Algorithm *algorithm);
+    void algorithmRemoved();
     void algorithmSelected(Algorithm *algorithm);
+
+    void cleared();
 
 };
 

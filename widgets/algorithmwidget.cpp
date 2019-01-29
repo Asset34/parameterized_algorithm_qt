@@ -24,11 +24,46 @@ AlgorithmWidget::AlgorithmWidget(QWidget *parent)
         this,
         &AlgorithmWidget::updateParameters
         );
+    connect(
+        m_algorithmSelector,
+        &AlgorithmSelector::cleared,
+        m_parameterListWidget,
+        &ParameterListWidget::clear
+        );
+    connect(
+        m_algorithmSelector,
+        &AlgorithmSelector::cleared,
+        this,
+        &AlgorithmWidget::cleared
+        );
+    connect(
+        m_algorithmSelector,
+        &AlgorithmSelector::algorithmAdded,
+        this,
+        &AlgorithmWidget::algorithmAdded
+        );
+    connect(
+        m_algorithmSelector,
+        &AlgorithmSelector::algorithmRemoved,
+        this,
+        &AlgorithmWidget::algorithmRemoved
+        );
+    connect(
+        m_algorithmSelector,
+        &AlgorithmSelector::algorithmSelected,
+        this,
+        &AlgorithmWidget::algorithmSelected
+        );
 }
 
 int AlgorithmWidget::getCount() const
 {
     return m_algorithmSelector->getCount();
+}
+
+bool AlgorithmWidget::isEmpty() const
+{
+    return m_algorithmSelector->isEmpty();
 }
 
 Algorithm *AlgorithmWidget::getAlgorithm(int index) const
@@ -51,10 +86,25 @@ void AlgorithmWidget::removeAlgorithm(int index)
     m_algorithmSelector->removeAlgorithm(index);
 }
 
+void AlgorithmWidget::selectFirstAlgorithm()
+{
+    m_algorithmSelector->selectFirstAlgorithm();
+}
+
+void AlgorithmWidget::selectLastAlgorithm()
+{
+    m_algorithmSelector->selectLastAlgorithm();
+}
+
 void AlgorithmWidget::selectAlgorithm(int index)
 {
     m_algorithmSelector->selectAlgorithm(index);
     updateParameters(m_algorithmSelector->getCurrentAlgorithm());
+}
+
+void AlgorithmWidget::clear()
+{
+    m_algorithmSelector->clear();
 }
 
 void AlgorithmWidget::updateParameters(Algorithm *algorithm)
