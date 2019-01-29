@@ -50,6 +50,13 @@ void AlgorithmSelector::removeAlgorithm(int index)
     }
 }
 
+void AlgorithmSelector::clear()
+{
+    m_algorithms.clear();
+
+    emit cleared();
+}
+
 void AlgorithmSelector::selectAlgorithm(int index)
 {
     if (checkIndex(index)) {

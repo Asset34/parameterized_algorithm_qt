@@ -22,6 +22,7 @@ public:
 
     void addAlgorithm(std::unique_ptr<Algorithm> algorithm);
     void removeAlgorithm(int index);
+    void clear();
 
 public slots:
     void selectAlgorithm(int index);
@@ -35,6 +36,8 @@ signals:
     void algorithmAdded(Algorithm *algorithm);
     void algorithmRemoved();
     void algorithmSelected(Algorithm *algorithm);
+
+    void cleared();
 
 };
 
