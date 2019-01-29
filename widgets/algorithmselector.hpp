@@ -32,8 +32,6 @@ public slots:
     void clear();
 
 private:
-    bool checkIndex(int index) const;
-
     std::vector< std::unique_ptr<Algorithm> > m_algorithms;
 
 signals:

@@ -12,7 +12,7 @@ AlgorithmSelector::AlgorithmSelector(QWidget *parent)
         static_cast<void (AlgorithmSelector::*)(int)>(&AlgorithmSelector::activated),
         this,
         &AlgorithmSelector::selectAlgorithm
-    );
+        );
 }
 
 int AlgorithmSelector::getCount() const
@@ -27,9 +27,7 @@ bool AlgorithmSelector::isEmpty() const
 
 Algorithm *AlgorithmSelector::getAlgorithm(int index) const
 {
-    if (checkIndex(index)) {
-        return m_algorithms[index].get();
-    }
+    return m_algorithms[index].get();
 
     return nullptr;
 }
@@ -53,18 +51,16 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
 
 void AlgorithmSelector::removeAlgorithm(int index)
 {
-    if (checkIndex(index)) {
-        removeItem(index);
-        m_algorithms.erase(m_algorithms.begin() + index);
+    removeItem(index);
+    m_algorithms.erase(m_algorithms.begin() + index);
 
-        // Update selection
-        selectLastAlgorithm();
+    // Update selection
+    selectLastAlgorithm();
 
-        if (isEmpty()) {
-            emit cleared();
-        }
-        emit algorithmRemoved();
+    if (isEmpty()) {
+        emit cleared();
     }
+    emit algorithmRemoved();
 }
 
 void AlgorithmSelector::selectFirstAlgorithm()
@@ -83,11 +79,9 @@ void AlgorithmSelector::selectLastAlgorithm()
 
 void AlgorithmSelector::selectAlgorithm(int index)
 {
-    if (checkIndex(index)) {
-        setCurrentIndex(index);
+    setCurrentIndex(index);
 
-        emit algorithmSelected(m_algorithms[index].get());
-    }
+    emit algorithmSelected(m_algorithms[index].get());
 }
 
 void AlgorithmSelector::clear()
@@ -95,13 +89,4 @@ void AlgorithmSelector::clear()
     m_algorithms.clear();
 
     emit cleared();
-}
-
-bool AlgorithmSelector::checkIndex(int index) const
-{
-    if (index >= 0 && index < m_algorithms.size()) {
-        return true;
-    }
-
-    return false;
 }
