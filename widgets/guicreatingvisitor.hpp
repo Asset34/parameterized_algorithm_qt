@@ -17,12 +17,13 @@ public:
     void updateWith(const std::vector<Parameter*> &parameters);
     void updateWith(Algorithm &algorithm);
 
+    void clear();
+
     virtual void visit(IntParameter  &p) override;
     virtual void visit(RealParameter &p) override;
     virtual void visit(FlagParameter &p) override;
 
 private:
-    void clear();
 
     QWidget *m_processedWidget;
     QFormLayout *m_layout;

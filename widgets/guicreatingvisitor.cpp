@@ -32,6 +32,17 @@ void GuiCreatingVisitor::updateWith(Algorithm &algorithm)
      updateWith(algorithm.getParameters());
 }
 
+void GuiCreatingVisitor::clear()
+{
+    QLayoutItem *item;
+    while (m_layout->count()) {
+        item = m_layout->takeAt(0);
+
+        delete item->widget();
+        delete item;
+    }
+}
+
 void GuiCreatingVisitor::visit(IntParameter &p)
 {
     // Create appropriate box
@@ -97,15 +108,4 @@ void GuiCreatingVisitor::visit(FlagParameter &p)
 
     // Add box to layoyt
     m_layout->addRow(QString::fromStdString(p.getName()) + ":", box);
-}
-
-void GuiCreatingVisitor::clear()
-{
-    QLayoutItem *item;
-    while (m_layout->count()) {
-        item = m_layout->takeAt(0);
-
-        delete item->widget();
-        delete item;
-    }
 }
