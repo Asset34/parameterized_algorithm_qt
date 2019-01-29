@@ -32,6 +32,8 @@ private:
     std::vector< std::unique_ptr<Algorithm> > m_algorithms;
 
 signals:
+    void algorithmAdded(Algorithm *algorithm);
+    void algorithmRemoved();
     void algorithmSelected(Algorithm *algorithm);
 
 };

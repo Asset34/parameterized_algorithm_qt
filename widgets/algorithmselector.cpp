@@ -38,13 +38,15 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
     addItem(QString::fromStdString(algorithm.get()->getName()));
     m_algorithms.push_back(std::move(algorithm));
 
-    selectAlgorithm(getCount() - 1);
+    emit algorithmAdded(m_algorithms.back().get());
 }
 
 void AlgorithmSelector::removeAlgorithm(int index)
 {
     if (checkIndex(index)) {
         m_algorithms.erase(m_algorithms.begin() + index);
+
+        emit algorithmRemoved();
     }
 }
 
