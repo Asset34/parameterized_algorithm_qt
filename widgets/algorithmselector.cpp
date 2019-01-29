@@ -2,12 +2,14 @@
 
 #include <utility>
 
+#include <QDebug>
+
 AlgorithmSelector::AlgorithmSelector(QWidget *parent)
     : QComboBox(parent)
 {
     connect(
         this,
-        static_cast<void (AlgorithmSelector::*)(int)>(&AlgorithmSelector::currentIndexChanged),
+        static_cast<void (AlgorithmSelector::*)(int)>(&AlgorithmSelector::activated),
         this,
         &AlgorithmSelector::selectAlgorithm
     );
@@ -16,6 +18,11 @@ AlgorithmSelector::AlgorithmSelector(QWidget *parent)
 int AlgorithmSelector::getCount() const
 {
     return m_algorithms.size();
+}
+
+bool AlgorithmSelector::isEmpty() const
+{
+    return m_algorithms.empty();
 }
 
 Algorithm *AlgorithmSelector::getAlgorithm(int index) const
@@ -44,6 +51,7 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
 void AlgorithmSelector::removeAlgorithm(int index)
 {
     if (checkIndex(index)) {
+        removeItem(index);
         m_algorithms.erase(m_algorithms.begin() + index);
 
         emit algorithmRemoved();
@@ -55,6 +63,20 @@ void AlgorithmSelector::clear()
     m_algorithms.clear();
 
     emit cleared();
+}
+
+void AlgorithmSelector::selectFirstAlgorithm()
+{
+    if (!isEmpty()) {
+        selectAlgorithm(0);
+    }
+}
+
+void AlgorithmSelector::selectLastAlgorithm()
+{
+    if (!isEmpty()) {
+        selectAlgorithm(getCount() - 1);
+    }
 }
 
 void AlgorithmSelector::selectAlgorithm(int index)

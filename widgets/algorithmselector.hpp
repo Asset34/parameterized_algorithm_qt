@@ -16,6 +16,7 @@ public:
     explicit AlgorithmSelector(QWidget *parent = nullptr);
 
     int getCount() const;
+    bool isEmpty() const;
 
     Algorithm *getAlgorithm(int index) const;
     Algorithm *getCurrentAlgorithm() const;
@@ -25,6 +26,8 @@ public:
     void clear();
 
 public slots:
+    void selectFirstAlgorithm();
+    void selectLastAlgorithm();
     void selectAlgorithm(int index);
 
 private:
