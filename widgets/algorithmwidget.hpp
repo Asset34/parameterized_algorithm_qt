@@ -21,8 +21,10 @@ public:
     int getCount() const;
     bool isEmpty() const;
 
-    Algorithm *getAlgorithm(int index) const;
-    Algorithm *getCurrentAlgorithm() const;
+    Algorithm &getAlgorithm(int index) const;
+    Algorithm &getCurrentAlgorithm() const;
+    Algorithm &getFirstAlgorithm() const;
+    Algorithm &getLastAlgorithm() const;
 
     void addAlgorithm(std::unique_ptr<Algorithm> algorithm);
     void removeAlgorithm(int index);
@@ -41,12 +43,12 @@ private:
     ParameterListWidget *m_parameterListWidget;
 
 private slots:
-    void updateParameters(Algorithm *algorithm);
+    void updateParameters(Algorithm &algorithm);
 
 signals:
-    void algorithmAdded(Algorithm *algorithm);
+    void algorithmAdded(Algorithm &algorithm);
     void algorithmRemoved();
-    void algorithmSelected(Algorithm *algorithm);
+    void algorithmSelected(Algorithm &algorithm);
 
     void cleared();
 

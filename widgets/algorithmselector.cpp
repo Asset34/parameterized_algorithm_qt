@@ -25,17 +25,24 @@ bool AlgorithmSelector::isEmpty() const
     return m_algorithms.empty();
 }
 
-Algorithm *AlgorithmSelector::getAlgorithm(int index) const
+Algorithm &AlgorithmSelector::getAlgorithm(int index) const
 {
-    return m_algorithms[index].get();
-
-    return nullptr;
+    return *m_algorithms[index].get();
 }
 
-Algorithm *AlgorithmSelector::getCurrentAlgorithm() const
+Algorithm &AlgorithmSelector::getCurrentAlgorithm() const
 {
-    int index = currentIndex();
-    return getAlgorithm(index);
+    return getAlgorithm(currentIndex());
+}
+
+Algorithm &AlgorithmSelector::getFirstAlgorithm() const
+{
+    return *m_algorithms.front().get();
+}
+
+Algorithm &AlgorithmSelector::getLastAlgorithm() const
+{
+    return *m_algorithms.back().get();
 }
 
 void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
@@ -46,7 +53,7 @@ void AlgorithmSelector::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
     // Update selection
     selectLastAlgorithm();
 
-    emit algorithmAdded(m_algorithms.back().get());
+    emit algorithmAdded(getLastAlgorithm());
 }
 
 void AlgorithmSelector::removeAlgorithm(int index)
@@ -81,7 +88,7 @@ void AlgorithmSelector::selectAlgorithm(int index)
 {
     setCurrentIndex(index);
 
-    emit algorithmSelected(m_algorithms[index].get());
+    emit algorithmSelected(getCurrentAlgorithm());
 }
 
 void AlgorithmSelector::clear()

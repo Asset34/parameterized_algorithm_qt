@@ -66,14 +66,24 @@ bool AlgorithmWidget::isEmpty() const
     return m_algorithmSelector->isEmpty();
 }
 
-Algorithm *AlgorithmWidget::getAlgorithm(int index) const
+Algorithm &AlgorithmWidget::getAlgorithm(int index) const
 {
     return m_algorithmSelector->getAlgorithm(index);
 }
 
-Algorithm *AlgorithmWidget::getCurrentAlgorithm() const
+Algorithm &AlgorithmWidget::getCurrentAlgorithm() const
 {
     return m_algorithmSelector->getCurrentAlgorithm();
+}
+
+Algorithm &AlgorithmWidget::getFirstAlgorithm() const
+{
+    return m_algorithmSelector->getFirstAlgorithm();
+}
+
+Algorithm &AlgorithmWidget::getLastAlgorithm() const
+{
+    return m_algorithmSelector->getLastAlgorithm();
 }
 
 void AlgorithmWidget::addAlgorithm(std::unique_ptr<Algorithm> algorithm)
@@ -107,7 +117,7 @@ void AlgorithmWidget::clear()
     m_algorithmSelector->clear();
 }
 
-void AlgorithmWidget::updateParameters(Algorithm *algorithm)
+void AlgorithmWidget::updateParameters(Algorithm &algorithm)
 {
-    m_parameterListWidget->updateWith(*algorithm);
+    m_parameterListWidget->updateWith(algorithm);
 }
