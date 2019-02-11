@@ -11,7 +11,8 @@ SOURCES += \
     $$PWD/widgets/algorithmselector.cpp \
     $$PWD/widgets/algorithmwidget.cpp \
     $$PWD/widgets/guicreatingvisitor.cpp \
-    $$PWD/widgets/parameterlistwidget.cpp
+    $$PWD/widgets/parameterlistwidget.cpp \
+    $$PWD/core/parameters/compositeparameter.cpp
 
 HEADERS += \
     $$PWD/core/parameters/flagparameter.hpp \
@@ -23,4 +24,5 @@ HEADERS += \
     $$PWD/widgets/algorithmselector.hpp \
     $$PWD/widgets/algorithmwidget.hpp \
     $$PWD/widgets/guicreatingvisitor.hpp \
-    $$PWD/widgets/parameterlistwidget.hpp
+    $$PWD/widgets/parameterlistwidget.hpp \
+    $$PWD/core/parameters/compositeparameter.hpp

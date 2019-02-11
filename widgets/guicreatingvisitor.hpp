@@ -19,9 +19,10 @@ public:
 
     void clear();
 
-    virtual void visit(IntParameter  &p) override;
-    virtual void visit(RealParameter &p) override;
-    virtual void visit(FlagParameter &p) override;
+    virtual void visit(IntParameter       &p) override;
+    virtual void visit(RealParameter      &p) override;
+    virtual void visit(FlagParameter      &p) override;
+    virtual void visit(CompositeParameter &p) override;
 
 private:
 

@@ -109,3 +109,16 @@ void GuiCreatingVisitor::visit(FlagParameter &p)
     // Add box to layoyt
     m_layout->addRow(QString::fromStdString(p.getName()) + ":", box);
 }
+
+void GuiCreatingVisitor::visit(CompositeParameter &p)
+{
+    // Create subwidget
+    QWidget *box = new QWidget;
+    GuiCreatingVisitor subvisitor(box);
+    for (int i = 0; i < p.getCount(); i++) {
+        p[i].accept(subvisitor);
+    }
+
+    m_layout->addWidget(box);
+    m_layout->addRow(QString::fromStdString(p.getName()) + ":", box);
+}
